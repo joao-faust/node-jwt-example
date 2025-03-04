@@ -13,6 +13,18 @@ export default async function logout(req, res, next) {
         return res.status(500).send({ message: 'Client is not ready.' })
     }
 
+    const authorization = req.headers['authorization']
+
+    const [flag, jwToken] = authorization.split(' ')
+
+    if (flag !== 'Bearer') {
+        return res.status(400).send({ message: 'Bearer flag is not present.' })
+    }
+
+    if (!jwToken) {
+        return res.status(401).send({ message: 'Token is required.' })
+    }
+
     let jwTokenBlacklistArray
 
     const jwTokenBlacklistJson = await redisClient.get('jwtBlacklist')
@@ -23,8 +35,6 @@ export default async function logout(req, res, next) {
     else {
         jwTokenBlacklistArray = Array.from(JSON.parse(jwTokenBlacklistJson))
     }
-
-    const jwToken = req.headers['authorization']
 
     jwTokenBlacklistArray.push(jwToken)
 

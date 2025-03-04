@@ -14,7 +14,13 @@ export default async function authorize(req, res, next) {
         return res.status(500).send({ message: 'Client is not ready.' })
     }
 
-    const jwToken = req.headers['authorization']
+    const authorization = req.headers['authorization']
+
+    const [flag, jwToken] = authorization.split(' ')
+
+    if (flag !== 'Bearer') {
+        return res.status(400).send({ message: 'Bearer flag is not present.' })
+    }
 
     if (!jwToken) {
         return res.status(401).send({ message: 'Token is required.' })
@@ -35,7 +41,8 @@ export default async function authorize(req, res, next) {
             return res.status(401).send({ message: 'Token is in blacklist.' })
         }
 
-        res.locals.userId = decoded.id
+        res.locals.id = decoded.sub
+        res.locals.name = decoded.name
 
         return next()
     }
