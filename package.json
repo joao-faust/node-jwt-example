@@ -1,7 +1,7 @@
 {
   "name": "jwt-auth",
   "version": "1.0.0",
-  "description": "Jwt authentication for Node.js",
+  "description": "Example to understand the use of json web tokens",
   "type": "module",
   "main": "src/index.js",
   "scripts": {
