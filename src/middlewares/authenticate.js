@@ -13,7 +13,7 @@ export default function authenticate(req, res) {
     }
 
     const token = jwt.sign(
-        { id: 1 },
+        { sub: 1, name: 'admin' },
         process.env.JWTOKEN_SECRET,
         { expiresIn: parseInt(process.env.JWTOKEN_EXPIRES_IN) }
     )
