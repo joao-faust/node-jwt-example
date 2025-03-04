@@ -1,5 +1,5 @@
 {
-  "name": "jwt-auth",
+  "name": "node-jwt-example",
   "version": "1.0.0",
   "description": "Example to understand the use of json web tokens",
   "type": "module",
