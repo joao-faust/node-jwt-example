@@ -1,0 +1,21 @@
+{
+  "name": "jwt-auth",
+  "version": "1.0.0",
+  "description": "Jwt authentication for Node.js",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "nodemon src/index"
+  },
+  "author": "João Faust",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv-safe": "^9.1.0",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "redis": "^4.7.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
