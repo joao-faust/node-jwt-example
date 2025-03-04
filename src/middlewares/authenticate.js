@@ -12,11 +12,11 @@ export default function authenticate(req, res) {
         return res.status(400).send({ message: 'Invalid credentials.' })
     }
 
-    const token = jwt.sign(
+    const jwToken = jwt.sign(
         { sub: 1, name: 'admin' },
         process.env.JWTOKEN_SECRET,
         { expiresIn: parseInt(process.env.JWTOKEN_EXPIRES_IN) }
     )
 
-    return res.send({ token })
+    return res.send({ jwToken })
 }
